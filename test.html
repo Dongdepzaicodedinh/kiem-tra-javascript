@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+</head>
+
+<body>
+    <script>
+   // bai1
+
+   function Bai1(string) {
+  //biến toàn bộ chữ cái thành viết thường rồi tách ra
+  let Inhoa = string.toLowerCase().split(" ");
+
+  //tạo vòng lặp viêt hoa chữ cái đầu mỗi từ
+  for( i = 0; i<Inhoa.length; i++){
+     Inhoa[i] = Inhoa[i][0].toUpperCase() + Inhoa[i].slice(1);
+  }
+  //nối lại
+  return Inhoa.join(" ");
+}
+
+let dapAn = Bai1('HELLO world');
+console.log(dapAn)
+
+ //bai2
+ //tương tự bài 1:tách ra rồi join = ("-")
+ function Bai2(string) {
+    let spinalCase=string.toLowerCase().split (" ")
+    return spinalCase.join("-")
+ }
+let dapAn2=Bai2('HELLO world');
+console.log (dapAn2)
+
+
+// Xử lý mảng
+
+//bai 1
+let array = [2,1,3,5,4];
+
+//Sắp xếp mảng số theo thứ tự tăng dần
+array.sort(function(a, b) {
+  return a - b;
+});
+console.log("số lớn thứ 2 là ",array[array.length-2]);
+
+//bai 2
+function getStringHasMaxLength(array) {
+
+  let maxLength = 0;
+  // tạo vòng lặp gán maxLength bằng phẩn tử có độ dài lớn nhất
+  for (let i = 0; i < array.length; i++) {
+   if (array[i].length > maxLength) {
+     maxLength = array[i].length;
+   }
+  }
+  //filler những giá trị có độ dài bằng maxLegth (nếu có)
+  longestStrs = array.filter((str) => str.length === maxLength);
+
+  return longestStrs;
+}
+let strings = ['aba', 'aa', 'ad', 'c', 'vcd'];
+let longest = getStringHasMaxLength(strings);
+console.log(longest);
+
+
+//bai 3
+function getRandomElement(chuoi)
+{
+  
+  return chuoi[Math.floor(Math.random()*chuoi.length)];
+     
+}
+
+let chuoi = [3, 7, 9, 11];
+console.log(getRandomElement(chuoi));
+
+
+// xử lý object
+//bai 1
+const students = [
+  { name: 'Roger', age: 20 },
+  { name: 'john', age: 25 },
+  { name: 'Emma', age: 22 },
+  { name: 'liam', age: 27 },
+  { name: 'sophia', age: 24 },
+  { name: 'Noah', age: 21 },
+  { name: 'Slivia', age: 28 },
+  { name: 'William', age: 23 },
+  { name: 'sava', age: 26 },
+  { name: 'James', age: 29 }
+];
+function avgAge(students) {
+  let totalAge=0;
+  // tính tổng tuổi học sinh
+  students.forEach(function(hocsinh){
+    totalAge=totalAge+hocsinh.age;
+  });
+  //tổng/dộ dài=truung bình
+  return totalAge/students.length
+}
+console.log (avgAge(students))
+
+//bai 2
+function sortbyAge(students){
+  return students.sort(function(prests,nextsts){
+    // đẩy điểm học sinh thấp ra sau
+    if (prests.age>nextsts.age){
+      return -1;
+      // đẩy điểm học sinh cao lên đầu
+    }if (prests.age<nextsts.age){
+    return 1;}
+    return 0
+  })
+}
+console.log (sortbyAge(students))
+
+//bai 3
+function sortbyname(students){
+  // sort theo thứ tự
+  return students.sort(function(prests,nextsts){
+    // chuyển về lower case
+    let hsinh1=prests.name.toLowerCase()
+    let hsinh2=nextsts.name.toLowerCase()
+    //so sánh theo bảng chữ cái
+    return hsinh1.localeCompare(hsinh2)
+  })
+}
+console.log(sortbyname(students))
+
+//bai 4 
+function findname(students){
+  // gán kết quả=hàm  đã lọc
+  let result= students.filter(function(students){
+    // lọc hsinh index0='S'
+    if (students.name.charAt(0) == 'S') {
+      return true
+        // lọc hsinh index0='s'
+    }if (students.name.charAt(0) == 's'){
+      return true
+    }
+  })
+  return result
+}
+console.log (findname(students))
+
+
+/* mảng user */
+let users = [
+    {
+        name: "Bùi Công Sơn",
+        age: 30,
+        isStatus: true
+    },
+    {
+        name: "Nguyễn Thu Hằng",
+        age: 27,
+        isStatus: false
+    },
+    {
+        name: "Phạm Văn Dũng",
+        age: 20,
+        isStatus: false
+    }
+]
+
+//bai 1
+
+function sumArray(mang){
+  // tổng bắt đầu =0
+    let sum = 0;
+    // tính tổng
+    mang.forEach(function(users){
+        sum += users.age;
+    });
+     
+    return sum;
+}
+let bai1=sumArray(users);
+console.log(bai1)
+
+//bai2
+function highestAge(mang2){
+  //gán giá trị lớn nhất =0
+ let maxValue=0
+ mang2.forEach(function(users){
+  //tạo vòng lặp nêu giá trị nào lớn hơn maxvalue thì gán lại maxvalue= giá trị đó
+        if(users.age > maxValue) {
+    maxValue = users.age;
+  }
+    });
+     
+    return maxValue;
+}  
+let maxValue = highestAge(users);
+console.log(maxValue);
+
+//bai 3
+function AgeTrue(mang3){
+  // chọn ra phẩn tử thỏa mãn 2 điều kiện
+  let result=mang3.filter(function(user){
+    return user.age >25 && user.isStatus == true;
+
+  })
+  return result
+}
+let bai3=AgeTrue(users)
+console.log(bai3)
+
+// bai 4
+//tương tự bài 2 trên mảng sinh viên
+function sortbyAge2(students){
+  return students.sort(function(prests,nextsts){
+    if (prests.age>nextsts.age){
+      return 1;
+    }if (prests.age<nextsts.age){
+    return -1;}
+    return 0
+  })
+}
+let bai4=sortbyAge2(users)
+console.log (bai4)
+
+
+
+//exam 3
+
+function demLuot(array2, so){
+  // lượt đếm ban đàu là 0
+    let count = 0;
+  //tìm thấy phẩn tử trong mảng giống 'so' thì count + 1
+    for(let i=0;i<array2.length;i++){
+      if(array2[i]==so) 
+        count ++;
+    }
+    console.log( so+":"+count+",");
+}
+
+let array2 = ["one", "two", "three", "one", "one", "three"] ;
+
+demLuot(array2, "one");
+demLuot(array2, "two");
+demLuot(array2, "three");
+
+    </script>
+</body>
+
+</html>
